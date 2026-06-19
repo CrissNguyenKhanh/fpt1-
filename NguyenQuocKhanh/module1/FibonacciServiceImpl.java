@@ -6,7 +6,7 @@ public class FibonacciServiceImpl implements FibonacciService {
             return fibonacciRecursive(n);
         }
 
-        return 0;
+        return fibonacciLoop(n);
     }
 
     private int fibonacciRecursive(int n) {
@@ -15,5 +15,22 @@ public class FibonacciServiceImpl implements FibonacciService {
         }
 
         return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+    }
+
+    private int fibonacciLoop(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        int previous = 0;
+        int current = 1;
+
+        for (int i = 2; i <= n; i++) {
+            int next = previous + current;
+            previous = current;
+            current = next;
+        }
+
+        return current;
     }
 }
